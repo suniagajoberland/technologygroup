@@ -536,7 +536,10 @@ body {
     z-index: 1;
 }
 
-.cover-cables    { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+.cover-cables    { background-image: url('./img/post.jfif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; }
 .cover-redonda   { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
 .cover-cuadrada  { background: linear-gradient(135deg, #10b981, #3b82f6); }
 .cover-reflector { background: linear-gradient(135deg, #f59e0b, #f97316); }

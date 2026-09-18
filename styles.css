@@ -111,10 +111,10 @@ body {
     color: var(--light);
 }
 
-.logo i {
-    color: var(--primary);
-    font-size: 1.8rem;
-    animation: pulse-glow 2s infinite;
+.logo img {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 @keyframes pulse-glow {

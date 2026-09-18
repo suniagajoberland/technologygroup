@@ -75,24 +75,11 @@ function animateCounter(element, target) {
     requestAnimationFrame(update);
 }
 
-/* Anima las estadisticas del hero */
+/* Anima las estadisticas del hero de forma inmediata */
 function animateCounters() {
     document.querySelectorAll('.stat-number').forEach(counter => {
         animateCounter(counter, parseInt(counter.dataset.target));
     });
-}
-
-/* Activa las animaciones de aparicion al hacer scroll */
-function setupIntersectionObserver() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                if (entry.target.classList.contains('hero')) animateCounters();
-            }
-        });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 }
 
 
@@ -134,7 +121,7 @@ function renderProduct(face, variant, family, index, total) {
 
     face.innerHTML = `
         <div class="card-image-container">
-            <img class="card-image" src="${variant.images[0]}" alt="${variant.title}" loading="lazy">
+            <img class="card-image" src="${variant.images[0]}" alt="${variant.title}" loading="eager">
             ${badge}
             <span class="card-image-count">
                 <i class="fas fa-images"></i> ${variant.images.length} fotos
@@ -204,8 +191,6 @@ function createCategoryCard(family) {
 
     // CLICK EN LA TARJETA
     card.addEventListener('click', (e) => {
-        // Si se pulsa el boton de galeria se abre el modal del modelo
-        // visible (sin cambiar el flip).
         if (e.target.closest('.gallery-btn')) {
             e.stopPropagation();
             const v = family.variants[pos >= 0 ? pos : 0];
@@ -213,30 +198,25 @@ function createCategoryCard(family) {
             return;
         }
 
-        if (busy) return;   // ignora clicks durante el giro
+        if (busy) return;
         busy = true;
 
-        // Siguiente estado del ciclo
         const next = (pos === total - 1) ? -1 : pos + 1;
 
-        // La cara que se va a revelar recibe su contenido ANTES de girar
         const targetFace = flipped ? front : back;
         render(targetFace, next);
 
-        // Ejecuta el giro 180 grados
         flipped = !flipped;
         card.classList.toggle('flipped', flipped);
         pos = next;
 
-        // Desbloquea los clicks cuando termina el giro
         setTimeout(() => busy = false, 650);
     });
 
     return card;
 }
 
-/* Genera todas las tarjetas y las coloca en la seccion unica.
-   La cantidad de tarjetas sale automaticamente de data.js */
+/* Genera todas las tarjetas y las coloca en la seccion unica. */
 function renderAllCategories() {
     if (!PRODUCTS_GRID) return;
     productFamilies.forEach(family => {
@@ -254,7 +234,6 @@ const modalDots = document.getElementById('modalDots');
 let modalImages = [];
 let modalIndex = 0;
 
-/* Abre el modal con las imagenes del producto recibido */
 function openModal(product, startIndex = 0) {
     modalImages = product.images;
     modalIndex = startIndex;
@@ -262,7 +241,6 @@ function openModal(product, startIndex = 0) {
     renderModalDots();
     modal.classList.add('active');
 
-    // Si el producto tiene 1 sola foto oculta las flechas
     const prevBtn = document.querySelector('.modal-prev');
     const nextBtn = document.querySelector('.modal-next');
     const showNav = modalImages.length > 1;
@@ -333,12 +311,14 @@ modal.addEventListener('click', (e) => {
 
 
 /* ============================================================
-   5. INICIO DE LA PAGINA
+   5. INICIO DE LA PAGINA (CARGA INMEDIATA)
    ============================================================ */
 renderAllCategories();
 
-// Activa las animaciones de aparicion de las secciones
-document.querySelectorAll('.products-section, .footer').forEach(el => {
-    el.classList.add('fade-in');
+// Fuerza la visibilidad de todas las secciones al cargar sin esperar scroll
+document.querySelectorAll('.fade-in, .products-section, .footer').forEach(el => {
+    el.classList.add('visible');
 });
-setupIntersectionObserver();
+
+// Inicia los contadores directamente al cargar la ventana
+animateCounters();

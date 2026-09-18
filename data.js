@@ -52,9 +52,7 @@ const productFamilies = [
                 oldPrice: '',
                 badge: 'hot', badgeText: 'Mas Vendido',
                 images: [
-                    'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&q=80',
-                    'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80',
-                    'https://images.unsplash.com/photo-1590556409324-aa1d726e5c3c?w=600&q=80'
+                    './img/2.jpg',                    
                 ],
                 specs: [
                     { label: 'Calibre', value: '#2 AWG' },
@@ -68,9 +66,7 @@ const productFamilies = [
                 oldPrice: '',
                 badge: '',
                 images: [
-                    'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&q=80',
-                    'https://images.unsplash.com/photo-1590556409324-aa1d726e5c3c?w=600&q=80',
-                    'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80'
+                    './img/4.jpg',
                 ],
                 specs: [
                     { label: 'Calibre', value: '#4 AWG' },
@@ -84,9 +80,7 @@ const productFamilies = [
                 oldPrice: '',
                 badge: '',
                 images: [
-                    'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&q=80',
-                    'https://images.unsplash.com/photo-1590556409324-aa1d726e5c3c?w=600&q=80',
-                    'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80'
+                    './img/6.jpg',
                 ],
                 specs: [
                     { label: 'Calibre', value: '#6 AWG' },
@@ -100,9 +94,7 @@ const productFamilies = [
                 oldPrice: '',
                 badge: '',
                 images: [
-                    'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&q=80',
-                    'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80',
-                    'https://images.unsplash.com/photo-1590556409324-aa1d726e5c3c?w=600&q=80'
+                    './img/8.jpg',
                 ],
                 specs: [
                     { label: 'Calibre', value: '#8 AWG' },
@@ -116,9 +108,7 @@ const productFamilies = [
                 oldPrice: '',
                 badge: '',
                 images: [
-                    'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&q=80',
-                    'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80',
-                    'https://images.unsplash.com/photo-1590556409324-aa1d726e5c3c?w=600&q=80'
+                    './img/10.jpg',
                 ],
                 specs: [
                     { label: 'Calibre', value: '#10 AWG' },
@@ -132,9 +122,7 @@ const productFamilies = [
                 oldPrice: '',
                 badge: 'new', badgeText: 'Nuevo',
                 images: [
-                    'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&q=80',
-                    'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80',
-                    'https://images.unsplash.com/photo-1590556409324-aa1d726e5c3c?w=600&q=80'
+                    './img/12.jpg',
                 ],
                 specs: [
                     { label: 'Calibre', value: '#12 AWG' },
@@ -148,9 +136,7 @@ const productFamilies = [
                 oldPrice: '',
                 badge: '',
                 images: [
-                    'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&q=80',
-                    'https://images.unsplash.com/photo-1590556409324-aa1d726e5c3c?w=600&q=80',
-                    'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80'
+                    './img/14.jpg',
                 ],
                 specs: [
                     { label: 'Calibre', value: '#14 AWG' },

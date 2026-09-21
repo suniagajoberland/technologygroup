@@ -243,9 +243,7 @@ const productFamilies = [
         badge: "sale",
         badgeText: "Oferta",
         images: [
-          "https://images.unsplash.com/photo-1526721940322-10fb6e3ae94a?w=600&q=80",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80",
-          "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+          "./img/r50w.jpg",
         ],
         specs: [
           { label: "Potencia", value: "50W" },

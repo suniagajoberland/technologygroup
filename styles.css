@@ -581,7 +581,10 @@ body {
   background-repeat: no-repeat;
 }
 .cover-reflector {
-  background: linear-gradient(135deg, #f59e0b, #f97316);
+  background: url("./img/por.jpg"); ;
+  background-size:   cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .cover-alumbrado {
   background: linear-gradient(135deg, #1d4ed8, #38bdf8);

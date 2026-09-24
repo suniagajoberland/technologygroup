@@ -343,14 +343,12 @@ const productFamilies = [
     cover: "cover-gamer",
     variants: [
       {
-        title: "Silla Gamer Basica",
+        title: "Silla Gamer DANGER",
         price: "$2,800",
         oldPrice: "$3,200",
         badge: "",
         images: [
-          "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=600&q=80",
-          "https://images.unsplash.com/photo-1593118247619-e2d6f056869e?w=600&q=80",
-          "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&q=80",
+          "./img/danger.jfif",
         ],
         specs: [
           { label: "Material", value: "Cuero PU" },
@@ -359,15 +357,13 @@ const productFamilies = [
         ],
       },
       {
-        title: "Silla Gamer Pro",
+        title: "Silla Gamer SNIPER",
         price: "$3,500",
         oldPrice: "$4,000",
         badge: "hot",
         badgeText: "Mas Vendido",
         images: [
-          "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=600&q=80",
-          "https://images.unsplash.com/photo-1593118247619-e2d6f056869e?w=600&q=80",
-          "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&q=80",
+          "./img/sniper.jfif",
         ],
         specs: [
           { label: "Material", value: "Cuero PU Premium" },
@@ -376,14 +372,54 @@ const productFamilies = [
         ],
       },
       {
-        title: "Silla Gamer Deluxe",
+        title: "Silla Gamer MUSHU",
         price: "$4,200",
         oldPrice: "",
         badge: "",
         images: [
-          "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=600&q=80",
-          "https://images.unsplash.com/photo-1593118247619-e2d6f056869e?w=600&q=80",
-          "https://images.unsplash.com/photo-1586105251261-72a756497a11?w=600&q=80",
+          "./img/mushu.jfif",
+        ],
+        specs: [
+          { label: "Material", value: "Cuero + Mesh" },
+          { label: "Capacidad", value: "Hasta 180kg" },
+          { label: "Reclinado", value: "180° + Soporte Lumbar" },
+        ],
+      },
+      {
+        title: "Silla Gamer NYX",
+        price: "$4,200",
+        oldPrice: "",
+        badge: "",
+        images: [
+          "./img/nyx.jfif",
+        ],
+        specs: [
+          { label: "Material", value: "Cuero + Mesh" },
+          { label: "Capacidad", value: "Hasta 180kg" },
+          { label: "Reclinado", value: "180° + Soporte Lumbar" },
+        ],
+      },
+      {
+        title: "Silla Gamer ZU",
+        price: "$4,200",
+        oldPrice: "",
+        badge: "",
+        images: [
+          "./img/zu.jfif",
+        ],
+        specs: [
+          { label: "Material", value: "Cuero + Mesh" },
+          { label: "Capacidad", value: "Hasta 180kg" },
+          { label: "Reclinado", value: "180° + Soporte Lumbar" },
+        ],
+      },
+      {
+        title: "Silla Gamer SPARTAN",
+        price: "$4,200",
+        oldPrice: "",
+        badge: "",
+        images: [
+          "./img/spartan.jfif",
         ],
         specs: [
           { label: "Material", value: "Cuero + Mesh" },

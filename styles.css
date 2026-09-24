@@ -581,16 +581,22 @@ body {
   background-repeat: no-repeat;
 }
 .cover-reflector {
-  background: url("./img/por.jpg"); ;
-  background-size:   cover;
+  background: url("./img/por.jpg");
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 .cover-alumbrado {
-  background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+  background: url("./img/");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .cover-gamer {
-  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  background: url("./img/portSilla.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .cover-protector {
   background: linear-gradient(135deg, #059669, #84cc16);

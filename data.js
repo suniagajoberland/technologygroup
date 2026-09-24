@@ -242,9 +242,7 @@ const productFamilies = [
         oldPrice: "$550",
         badge: "sale",
         badgeText: "Oferta",
-        images: [
-          "./img/r50w.jpg",
-        ],
+        images: ["./img/r50w.jpg"],
         specs: [
           { label: "Potencia", value: "50W" },
           { label: "Tipo", value: "LED" },
@@ -256,11 +254,7 @@ const productFamilies = [
         price: "$680",
         oldPrice: "",
         badge: "",
-        images: [
-          "https://images.unsplash.com/photo-1526721940322-10fb6e3ae94a?w=600&q=80",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80",
-          "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
-        ],
+        images: ["./img/r100w.jfif"],
         specs: [
           { label: "Potencia", value: "100W" },
           { label: "Tipo", value: "LED" },
@@ -273,9 +267,7 @@ const productFamilies = [
         oldPrice: "$1,100",
         badge: "",
         images: [
-          "https://images.unsplash.com/photo-1526721940322-10fb6e3ae94a?w=600&q=80",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80",
-          "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+          "./img/r200w.jfif",
         ],
         specs: [
           { label: "Potencia", value: "200W" },
@@ -290,9 +282,7 @@ const productFamilies = [
         badge: "hot",
         badgeText: "Popular",
         images: [
-          "https://images.unsplash.com/photo-1526721940322-10fb6e3ae94a?w=600&q=80",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80",
-          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+          "./img/r300w.jfif",
         ],
         specs: [
           { label: "Potencia", value: "300W" },
@@ -307,9 +297,7 @@ const productFamilies = [
         badge: "sale",
         badgeText: "Oferta",
         images: [
-          "https://images.unsplash.com/photo-1526721940322-10fb6e3ae94a?w=600&q=80",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80",
-          "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+          "./img/r400w.jfif",
         ],
         specs: [
           { label: "Potencia", value: "400W" },

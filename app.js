@@ -7,9 +7,10 @@
       - Cara frontal: portada de la categoria
       - Dorso: productos de la categoria, con botones
         para CAMBIAR de producto y VOLVER a la portada
-      - Movil: toque para voltear; swipe horizontal cambia de
-        producto; swipe hacia abajo en el dorso vuelve a portada
-   3. Modal de galeria de fotos
+       - Movil: toque para voltear; swipe horizontal cambia de
+         producto; swipe hacia abajo en el dorso vuelve a portada
+       - Al cambiar de producto, el contenido del dorso hace un flip 3D
+    3. Modal de galeria de fotos
 
    COMO MODIFICAR:
    - Agregar/quitar productos -> edita "data.js"
@@ -115,6 +116,28 @@ function createFlipCard(family) {
     const back = document.createElement('div');
     back.className = 'flip-card-face flip-card-back';
 
+    /* Wrapper persistente: al cambiar de producto ESTE elemento hace
+       el flip 3D; el innerHTML se reemplaza en el punto medio (canto) */
+    const flipInner = document.createElement('div');
+    flipInner.className = 'card-flip-inner';
+    back.appendChild(flipInner);
+
+    let flipTimer = null;
+
+    /* Voltea el contenido del dorso hacia el producto "newIndex".
+       El contenido nuevo se dibuja a los 275ms, cuando el wrapper
+       esta de canto (90deg) y no se ve. Clics rapidos: se cancela
+       el swap pendiente y se reinicia el flip hacia el ultimo destino. */
+    function changeProduct(newIndex, direction) {
+        if (total < 2) return;
+        clearTimeout(flipTimer);
+        index = ((newIndex % total) + total) % total;
+        flipInner.classList.remove('flipping-next', 'flipping-prev');
+        void flipInner.offsetWidth; // reflow: reinicia la animacion
+        flipInner.classList.add(direction === 'prev' ? 'flipping-prev' : 'flipping-next');
+        flipTimer = setTimeout(renderBack, 275);
+    }
+
     function renderBack() {
         const v = variants[index];
         const badge = v.badge ?
@@ -126,7 +149,7 @@ function createFlipCard(family) {
                 <i class="fas fa-images"></i> ${v.images.length} fotos
             </span>` : '';
 
-        back.innerHTML = `
+        flipInner.innerHTML = `
             <div class="card-image-container">
                 <img class="card-image" src="${v.images[0]}" alt="${v.title}" loading="lazy">
                 ${badge}
@@ -169,23 +192,21 @@ function createFlipCard(family) {
             e.stopPropagation();
             openModal({ title: v.title, images: v.images });
         };
-        back.querySelector('.gallery-btn').addEventListener('click', openGallery);
-        back.querySelector('.card-image-container').addEventListener('click', openGallery);
+        flipInner.querySelector('.gallery-btn').addEventListener('click', openGallery);
+        flipInner.querySelector('.card-image-container').addEventListener('click', openGallery);
 
-        const prevBtn = back.querySelector('.nav-prev');
-        const nextBtn = back.querySelector('.nav-next');
+        const prevBtn = flipInner.querySelector('.nav-prev');
+        const nextBtn = flipInner.querySelector('.nav-next');
         if (prevBtn) prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            index = (index - 1 + total) % total;
-            renderBack();
+            changeProduct(index - 1, 'prev');
         });
         if (nextBtn) nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            index = (index + 1) % total;
-            renderBack();
+            changeProduct(index + 1, 'next');
         });
 
-        back.querySelector('.flip-return').addEventListener('click', (e) => {
+        flipInner.querySelector('.flip-return').addEventListener('click', (e) => {
             e.stopPropagation();
             card.classList.remove('flipped');
         });
@@ -209,16 +230,12 @@ function createFlipCard(family) {
        (si estas en el 1ro y deslizas a la derecha, vuelve a portada),
        swipe hacia abajo vuelve a la portada */
     attachTouchGestures(back, {
-        onSwipeLeft: () => {
-            index = (index + 1) % total;
-            renderBack();
-        },
+        onSwipeLeft: () => changeProduct(index + 1, 'next'),
         onSwipeRight: () => {
             if (index === 0) {
                 card.classList.remove('flipped');
             } else {
-                index -= 1;
-                renderBack();
+                changeProduct(index - 1, 'prev');
             }
         },
         onSwipeDown: () => card.classList.remove('flipped'),

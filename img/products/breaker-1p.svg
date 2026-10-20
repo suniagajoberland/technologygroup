@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="rgba(245,158,11,0.18)"/>
+      <stop offset="100%" stop-color="rgba(245,158,11,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <circle cx="300" cy="250" r="200" fill="url(#glow)"/>
+  
+    <rect x="220" y="110" width="160" height="260" rx="16" fill="none" stroke="url(#acc)" stroke-width="10"/>
+    <rect x="245" y="140" width="110" height="70" rx="10" fill="#0f172a"/>
+    <rect x="255" y="150" width="90" height="30" rx="6" fill="url(#acc)"/>
+    <text x="300" y="260" text-anchor="middle" font-family="Arial" font-size="34" font-weight="800" fill="#f59e0b">1P</text>
+  <text x="300" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#f8fafc">Breaker 1 Polos</text>
+  <text x="300" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#94a3b8">Technology Group</text>
+</svg>

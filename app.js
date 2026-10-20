@@ -2,16 +2,17 @@
    LOGICA DE LA TIENDA DE ILUMINACION
    ============================================================
    ESTE ARCHIVO:
-   1. Menu (navbar): fondo al hacer scroll + menu movil
-   2. Hero: particulas flotantes + contadores animados
-   3. Tarjetas de productos: una tarjeta por categoria,
-      el flip recorre todos sus productos (de data.js)
-   4. Modal de galeria de fotos
+   1. Menu (navbar): fondo al hacer scroll
+   2. Tarjetas flip: UNA tarjeta por categoria (marca/descripcion).
+      - Cara frontal: portada de la categoria
+      - Dorso: productos de la categoria, con botones
+        para CAMBIAR de producto y VOLVER a la portada
+      - Movil: toque para voltear; swipe horizontal cambia de
+        producto; swipe hacia abajo en el dorso vuelve a portada
+   3. Modal de galeria de fotos
 
    COMO MODIFICAR:
    - Agregar/quitar productos -> edita "data.js"
-   - Velocidad del flip -> setTimeout(650) + CSS transition
-   - Velocidad de animaciones -> en este archivo
    ============================================================ */
 
 
@@ -19,72 +20,15 @@
    1. MENU (NAVBAR)
    ============================================================ */
 const navbar = document.getElementById('navbar');
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
 
 /* Agrega fondo al menu cuando haces scroll */
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-/* Menu hamburguesa en movil */
-navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-/* Cierra el menu al hacer click en un link */
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('active'));
-});
-
 
 /* ============================================================
-   2. HERO (PARTICULAS + CONTADORES)
-   ============================================================ */
-
-/* Genera particulas flotantes de fondo */
-function createParticles() {
-    const container = document.getElementById('particles');
-    if (!container) return;
-    for (let i = 0; i < 20; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = Math.random() * 6 + 2;
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = Math.random() * 100 + '%';
-        p.style.animationDuration = (Math.random() * 15 + 10) + 's';
-        p.style.animationDelay = (Math.random() * 15) + 's';
-        if (Math.random() > 0.5) p.style.background = 'var(--accent)';
-        container.appendChild(p);
-    }
-}
-createParticles();
-
-/* Anima un numero desde 0 hasta su valor */
-function animateCounter(element, target) {
-    const duration = 2000;
-    const start = performance.now();
-    function update(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        element.textContent = Math.round(eased * target);
-        if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-}
-
-/* Anima las estadisticas del hero de forma inmediata */
-function animateCounters() {
-    document.querySelectorAll('.stat-number').forEach(counter => {
-        animateCounter(counter, parseInt(counter.dataset.target));
-    });
-}
-
-
-/* ============================================================
-   3. TARJETAS DE PRODUCTOS (efecto flip)
+   2. TARJETAS FLIP (UNA POR CATEGORIA)
    ============================================================ */
 
 /* Contenedor donde se dibujan TODAS las tarjetas */
@@ -96,137 +40,216 @@ function badgeClass(badge) {
     return map[badge] || '';
 }
 
-/* PORTADA: dibuja la cara de portada de la tarjeta con el
-   titulo de la categoria y la cantidad de modelos. */
-function renderCover(face, family) {
-    const count = family.variants.length;
-    face.innerHTML = `
-        <div class="card-cover ${family.cover}">
-            <div class="cover-decor"></div>
-            <div class="cover-icon"><i class="${family.icon}"></i></div>
-            <h3 class="cover-title">${family.title}</h3>
-            <span class="cover-count">${count} ${count === 1 ? 'modelo' : 'modelos'}</span>
-            <span class="cover-hint"><i class="fas fa-hand-pointer"></i> Click para ver modelos</span>
-        </div>
-    `;
+/* Detecta swipes con el dedo (movil/tablet).
+   - swipe horizontal: onSwipeLeft / onSwipeRight
+   - swipe hacia abajo: onSwipeDown
+   Los toques simples NO se procesan aqui: dejan pasar al click
+   normal (voltear, abrir galeria, botones). */
+function attachTouchGestures(el, { onSwipeLeft, onSwipeRight, onSwipeDown, threshold = 45 }) {
+    let tracking = false;
+    let x0 = 0, y0 = 0;
+
+    el.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        tracking = true;
+        x0 = e.touches[0].clientX;
+        y0 = e.touches[0].clientY;
+    }, { passive: true });
+
+    el.addEventListener('touchend', (e) => {
+        if (!tracking) return;
+        tracking = false;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - x0;
+        const dy = t.clientY - y0;
+        if (Math.abs(dx) < threshold && Math.abs(dy) < threshold) return;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0 && onSwipeLeft) {
+                e.preventDefault(); // cancela el click sintetico
+                onSwipeLeft();
+            } else if (dx > 0 && onSwipeRight) {
+                e.preventDefault();
+                onSwipeRight();
+            }
+        } else if (dy > threshold && onSwipeDown) {
+            e.preventDefault();
+            onSwipeDown();
+        }
+    }, { passive: false });
+
+    el.addEventListener('touchcancel', () => {
+        tracking = false;
+    });
 }
 
-/* PRODUCTO: dibuja la cara de un producto (imagen, precio,
-   contador "Modelo X / total"). */
-function renderProduct(face, variant, family, index, total) {
-    const badge = variant.badge ?
-        `<span class="card-badge ${badgeClass(variant.badge)}">${variant.badgeText}</span>` : '';
-    const old = variant.oldPrice ?
-        `<span class="price-old">${variant.oldPrice}</span>` : '';
+/* Crea UNA tarjeta flip por categoria:
+   - Frente: portada con icono, nombre y cantidad de productos
+   - Dorso: producto actual con precio + botones
+     [ < ] cambiar producto [ > ]  y  [ Volver ]
+   Click en la portada voltea; los botones del dorso controlan
+   la navegacion entre productos sin salir del flip. */
+function createFlipCard(family) {
+    const variants = [...family.variants]; // ya vienen ordenados alfabeticamente en data.js
+    const total = variants.length;
+    let index = 0;
 
-    face.innerHTML = `
-        <div class="card-image-container">
-            <img class="card-image" src="${variant.images[0]}" alt="${variant.title}" loading="eager">
-            ${badge}
-            <span class="card-image-count">
-                <i class="fas fa-images"></i> ${variant.images.length} fotos
-            </span>
-            <button class="gallery-btn" title="Ver todas las fotos">
-                <i class="fas fa-expand"></i>
-            </button>
-        </div>
-        <div class="card-body">
-            <div>
-                <div class="card-category">${family.title}</div>
-                <h3 class="card-title">${variant.title}</h3>
-            </div>
-            <div>
-                <div class="card-price">
-                    <span class="price-current">${variant.price}</span>
-                    ${old}
-                </div>
-                <div class="card-meta">
-                    <span class="model-counter">
-                        Modelo <b>${index + 1}</b> / ${total}
-                    </span>
-                    <span class="flip-hint">
-                        <i class="fas fa-sync-alt"></i> Click para el siguiente
-                    </span>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-/* Crea UNA tarjeta por categoria.
-   El ciclo del flip es: portada(-1) -> producto0 -> producto1
-   ... -> portada, y vuelve a empezar. */
-function createCategoryCard(family) {
-    const total = family.variants.length;
-    let pos = -1;        // estado actual: -1 = portada, 0..total-1 = producto
-    let flipped = false; // cara visible: false = front, true = back
-    let busy = false;    // bloquea clicks mientras gira (evita doble flip)
-
-    // Construccion de la tarjeta: dos caras dentro de un "inner" 3D
     const card = document.createElement('div');
     card.className = 'flip-card';
 
     const inner = document.createElement('div');
     inner.className = 'flip-card-inner';
 
+    /* -------- CARA FRONTAL (portada) -------- */
     const front = document.createElement('div');
-    front.className = 'flip-card-front';
+    front.className = 'flip-card-face flip-card-front';
+    front.innerHTML = `
+        <div class="cover-decor"></div>
+        <div class="cover-icon"><i class="${family.icon}"></i></div>
+        <h3 class="cover-title">${family.title}</h3>
+        <span class="cover-count">${total} ${total === 1 ? 'producto' : 'productos'}</span>
+        <span class="cover-hint"><i class="fas fa-hand-pointer"></i> Click o toca para ver</span>
+    `;
 
+    /* -------- CARA TRASERA (productos) -------- */
     const back = document.createElement('div');
-    back.className = 'flip-card-back';
+    back.className = 'flip-card-face flip-card-back';
 
-    inner.appendChild(front);
-    inner.appendChild(back);
-    card.appendChild(inner);
+    function renderBack() {
+        const v = variants[index];
+        const badge = v.badge ?
+            `<span class="card-badge ${badgeClass(v.badge)}">${v.badgeText}</span>` : '';
+        const old = v.oldPrice ?
+            `<span class="price-old">${v.oldPrice}</span>` : '';
+        const count = v.images.length > 1 ?
+            `<span class="card-image-count">
+                <i class="fas fa-images"></i> ${v.images.length} fotos
+            </span>` : '';
 
-    // Define el contenido de una cara segun el estado (-1 = portada)
-    const render = (face, state) => {
-        if (state === -1) renderCover(face, family);
-        else renderProduct(face, family.variants[state], family, state, total);
-    };
+        back.innerHTML = `
+            <div class="card-image-container">
+                <img class="card-image" src="${v.images[0]}" alt="${v.title}" loading="lazy">
+                ${badge}
+                ${count}
+                <button class="gallery-btn" title="Ver todas las fotos">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="card-category">${family.title}</div>
+                <h3 class="card-title">${v.title}</h3>
+                <div class="card-price">
+                    <span class="price-current">${v.price}</span>
+                    ${old}
+                    <a class="card-whatsapp"
+                       href="https://wa.me/584226382165?text=${encodeURIComponent('Hola, me gustaría comprar: ' + v.title)}"
+                       target="_blank" rel="noopener"
+                       title="Comprar por WhatsApp">
+                        <i class="fab fa-whatsapp"></i> Comprar
+                    </a>
+                </div>
+                <div class="card-nav">
+                    <button class="nav-btn nav-prev" title="Producto anterior"
+                        ${total < 2 ? 'disabled' : ''}>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="nav-counter">${index + 1} / ${total}</span>
+                    <button class="nav-btn nav-next" title="Siguiente producto"
+                        ${total < 2 ? 'disabled' : ''}>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="flip-return" title="Volver a la portada">
+                        <i class="fas fa-undo"></i> Volver
+                    </button>
+                </div>
+            </div>
+        `;
 
-    // ESTADO INICIAL: portada al frente, primer producto preparado detras
-    render(front, -1);
-    render(back, 0);
-
-    // CLICK EN LA TARJETA
-    card.addEventListener('click', (e) => {
-        if (e.target.closest('.gallery-btn')) {
+        const openGallery = (e) => {
             e.stopPropagation();
-            const v = family.variants[pos >= 0 ? pos : 0];
             openModal({ title: v.title, images: v.images });
-            return;
-        }
+        };
+        back.querySelector('.gallery-btn').addEventListener('click', openGallery);
+        back.querySelector('.card-image-container').addEventListener('click', openGallery);
 
-        if (busy) return;
-        busy = true;
+        const prevBtn = back.querySelector('.nav-prev');
+        const nextBtn = back.querySelector('.nav-next');
+        if (prevBtn) prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            index = (index - 1 + total) % total;
+            renderBack();
+        });
+        if (nextBtn) nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            index = (index + 1) % total;
+            renderBack();
+        });
 
-        const next = (pos === total - 1) ? -1 : pos + 1;
+        back.querySelector('.flip-return').addEventListener('click', (e) => {
+            e.stopPropagation();
+            card.classList.remove('flipped');
+        });
+    }
 
-        const targetFace = flipped ? front : back;
-        render(targetFace, next);
-
-        flipped = !flipped;
-        card.classList.toggle('flipped', flipped);
-        pos = next;
-
-        setTimeout(() => busy = false, 650);
+    /* Click en la portada -> voltea al dorso (empieza en el 1er producto) */
+    front.addEventListener('click', () => {
+        index = 0;
+        renderBack();
+        card.classList.add('flipped');
     });
 
+    /* -------- GESTOS CON EL DEDO (movil/tablet) -------- */
+    /* Portada: swipe horizontal tambien voltea la tarjeta */
+    attachTouchGestures(front, {
+        onSwipeLeft: () => flipToBack(),
+        onSwipeRight: () => flipToBack(),
+    });
+
+    /* Dorso: swipe horizontal cambia de producto
+       (si estas en el 1ro y deslizas a la derecha, vuelve a portada),
+       swipe hacia abajo vuelve a la portada */
+    attachTouchGestures(back, {
+        onSwipeLeft: () => {
+            index = (index + 1) % total;
+            renderBack();
+        },
+        onSwipeRight: () => {
+            if (index === 0) {
+                card.classList.remove('flipped');
+            } else {
+                index -= 1;
+                renderBack();
+            }
+        },
+        onSwipeDown: () => card.classList.remove('flipped'),
+    });
+
+    function flipToBack() {
+        index = 0;
+        renderBack();
+        card.classList.add('flipped');
+    }
+
+    renderBack();
+    inner.append(front, back);
+    card.appendChild(inner);
     return card;
 }
 
-/* Genera todas las tarjetas y las coloca en la seccion unica. */
+/* Ordena las categorias alfabeticamente y dibuja una tarjeta flip por cada una */
 function renderAllCategories() {
     if (!PRODUCTS_GRID) return;
-    productFamilies.forEach(family => {
-        PRODUCTS_GRID.appendChild(createCategoryCard(family));
+    const sorted = [...productFamilies].sort((a, b) =>
+        a.title.localeCompare(b.title, 'es', { sensitivity: 'base' })
+    );
+    sorted.forEach(family => {
+        PRODUCTS_GRID.appendChild(createFlipCard(family));
     });
 }
 
 
 /* ============================================================
-   4. MODAL DE GALERIA DE FOTOS
+   3. MODAL DE GALERIA DE FOTOS
    ============================================================ */
 const modal = document.getElementById('imageModal');
 const modalImage = document.getElementById('modalImage');
@@ -311,7 +334,7 @@ modal.addEventListener('click', (e) => {
 
 
 /* ============================================================
-   5. INICIO DE LA PAGINA (CARGA INMEDIATA)
+   4. INICIO DE LA PAGINA (CARGA INMEDIATA)
    ============================================================ */
 renderAllCategories();
 
@@ -319,6 +342,3 @@ renderAllCategories();
 document.querySelectorAll('.fade-in, .products-section, .footer').forEach(el => {
     el.classList.add('visible');
 });
-
-// Inicia los contadores directamente al cargar la ventana
-animateCounters();

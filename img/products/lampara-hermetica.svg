@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="rgba(245,158,11,0.18)"/>
+      <stop offset="100%" stop-color="rgba(245,158,11,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <circle cx="300" cy="250" r="200" fill="url(#glow)"/>
+  
+    <rect x="120" y="195" width="360" height="70" rx="35" fill="none" stroke="url(#acc)" stroke-width="10"/>
+    <rect x="140" y="212" width="320" height="36" rx="18" fill="rgba(245,158,11,0.25)"/>
+    <rect x="100" y="205" width="30" height="50" rx="8" fill="#475569"/>
+    <rect x="470" y="205" width="30" height="50" rx="8" fill="#475569"/>
+  <text x="300" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#f8fafc">Hermetica 80W</text>
+  <text x="300" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#94a3b8">Technology Group</text>
+</svg>

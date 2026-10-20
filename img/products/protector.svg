@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="rgba(245,158,11,0.18)"/>
+      <stop offset="100%" stop-color="rgba(245,158,11,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <circle cx="300" cy="250" r="200" fill="url(#glow)"/>
+  
+    <rect x="180" y="130" width="240" height="240" rx="24" fill="none" stroke="url(#acc)" stroke-width="10"/>
+    <path d="M300 165 L355 190 L355 250 Q355 300 300 330 Q245 300 245 250 L245 190 Z" fill="rgba(245,158,11,0.25)" stroke="#f59e0b" stroke-width="5"/>
+    <path d="M275 245 L295 268 L330 220" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="300" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#f8fafc">Protector</text>
+  <text x="300" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#94a3b8">Technology Group</text>
+</svg>

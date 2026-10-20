@@ -824,10 +824,33 @@ const productFamilies = [
   },
   {
     "section": "cables",
-    "title": "CABEL",
-    "icon": "fas fa-bolt",
+    "title": "Cable de Corriente",
+    "icon": "fas fa-plug-circle-bolt",
     "cover": "cover-cables",
     "variants": [
+      {
+        "title": "Cable Electrico #8 x Rollo",
+        "price": "310.88$",
+        "oldPrice": "",
+        "badge": "",
+        "images": [
+          "./img/8.jpg"
+        ],
+        "specs": [
+          {
+            "label": "Calibre",
+            "value": "#8 AWG"
+          },
+          {
+            "label": "Marca",
+            "value": "CABEL"
+          },
+          {
+            "label": "Presentacion",
+            "value": "Rollo"
+          }
+        ]
+      },
       {
         "title": "Cable Electrico #10 x Rollo",
         "price": "191.40$",
@@ -897,37 +920,6 @@ const productFamilies = [
           }
         ]
       },
-      {
-        "title": "Cable Electrico #8 x Rollo",
-        "price": "310.88$",
-        "oldPrice": "",
-        "badge": "",
-        "images": [
-          "./img/8.jpg"
-        ],
-        "specs": [
-          {
-            "label": "Calibre",
-            "value": "#8 AWG"
-          },
-          {
-            "label": "Marca",
-            "value": "CABEL"
-          },
-          {
-            "label": "Presentacion",
-            "value": "Rollo"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "section": "cables",
-    "title": "Cable de Corriente",
-    "icon": "fas fa-plug-circle-bolt",
-    "cover": "cover-cables",
-    "variants": [
       {
         "title": "Cable #2",
         "price": "1120$",

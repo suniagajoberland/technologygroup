@@ -8,7 +8,9 @@
       - Dorso: productos de la categoria, con botones
         para CAMBIAR de producto y VOLVER a la portada
        - Movil: toque para voltear; swipe horizontal cambia de
-         producto; swipe hacia abajo en el dorso vuelve a portada
+         producto
+       - Si el gesto mueve el scroll de la pagina, se ignora:
+         hacer scroll NUNCA vuelve a portada ni navega
        - Al cambiar de producto, el contenido del dorso hace un flip 3D
     3. Modal de galeria de fotos
 
@@ -43,39 +45,44 @@ function badgeClass(badge) {
 
 /* Detecta swipes con el dedo (movil/tablet).
    - swipe horizontal: onSwipeLeft / onSwipeRight
-   - swipe hacia abajo: onSwipeDown
    Los toques simples NO se procesan aqui: dejan pasar al click
-   normal (voltear, abrir galeria, botones). */
-function attachTouchGestures(el, { onSwipeLeft, onSwipeRight, onSwipeDown, threshold = 45 }) {
+   normal (voltear, abrir galeria, botones).
+   Si durante el toque cambio el scroll de la pagina, el gesto se
+   descarta por completo: hacer scroll no voltea ni cambia nada. */
+function attachTouchGestures(el, { onSwipeLeft, onSwipeRight, threshold = 45 }) {
     let tracking = false;
     let x0 = 0, y0 = 0;
+    let scroll0 = 0;
+    let scrolled = false;
 
     el.addEventListener('touchstart', (e) => {
         if (e.touches.length !== 1) return;
         tracking = true;
+        scrolled = false;
         x0 = e.touches[0].clientX;
         y0 = e.touches[0].clientY;
+        scroll0 = window.scrollY;
+    }, { passive: true });
+
+    el.addEventListener('touchmove', () => {
+        if (tracking && window.scrollY !== scroll0) scrolled = true;
     }, { passive: true });
 
     el.addEventListener('touchend', (e) => {
         if (!tracking) return;
         tracking = false;
+        if (scrolled || window.scrollY !== scroll0) return;
         const t = e.changedTouches[0];
         const dx = t.clientX - x0;
         const dy = t.clientY - y0;
-        if (Math.abs(dx) < threshold && Math.abs(dy) < threshold) return;
+        if (Math.abs(dx) < threshold || Math.abs(dx) <= Math.abs(dy)) return;
 
-        if (Math.abs(dx) > Math.abs(dy)) {
-            if (dx < 0 && onSwipeLeft) {
-                e.preventDefault(); // cancela el click sintetico
-                onSwipeLeft();
-            } else if (dx > 0 && onSwipeRight) {
-                e.preventDefault();
-                onSwipeRight();
-            }
-        } else if (dy > threshold && onSwipeDown) {
+        if (dx < 0 && onSwipeLeft) {
+            e.preventDefault(); // cancela el click sintetico
+            onSwipeLeft();
+        } else if (dx > 0 && onSwipeRight) {
             e.preventDefault();
-            onSwipeDown();
+            onSwipeRight();
         }
     }, { passive: false });
 
@@ -227,8 +234,8 @@ function createFlipCard(family) {
     });
 
     /* Dorso: swipe horizontal cambia de producto
-       (si estas en el 1ro y deslizas a la derecha, vuelve a portada),
-       swipe hacia abajo vuelve a la portada */
+       (si estas en el 1ro y deslizas a la derecha, vuelve a portada).
+       El scroll vertical solo hace scroll: no vuelve a portada. */
     attachTouchGestures(back, {
         onSwipeLeft: () => changeProduct(index + 1, 'next'),
         onSwipeRight: () => {
@@ -238,7 +245,6 @@ function createFlipCard(family) {
                 changeProduct(index - 1, 'prev');
             }
         },
-        onSwipeDown: () => card.classList.remove('flipped'),
     });
 
     function flipToBack() {

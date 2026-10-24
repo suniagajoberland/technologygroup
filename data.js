@@ -921,7 +921,7 @@ const productFamilies = [
         ]
       },
       {
-        "title": "Cable #2",
+        "title": "Cable Electrico #2",
         "price": "1120$",
         "oldPrice": "",
         "badge": "hot",
@@ -945,7 +945,7 @@ const productFamilies = [
         ]
       },
       {
-        "title": "Cable #4",
+        "title": "Cable Electrico #4",
         "price": "705$",
         "oldPrice": "",
         "badge": "",
@@ -968,7 +968,7 @@ const productFamilies = [
         ]
       },
       {
-        "title": "Cable #6",
+        "title": "Cable Electrico #6",
         "price": "395$",
         "oldPrice": "",
         "badge": "",

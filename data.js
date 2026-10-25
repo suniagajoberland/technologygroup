@@ -2077,7 +2077,7 @@ const productFamilies = [
         "images": [
           "./img/products/utp-cable.svg"
         ],
-        "specs": [
+        "specs": [                                                                                                                                                                                                             
           {
             "label": "Marca",
             "value": "Hikvision"

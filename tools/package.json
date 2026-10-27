@@ -1,0 +1,13 @@
+{
+  "name": "technology-group-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "optimize": "node optimize-images.mjs",
+    "seo": "node generate-seo.mjs",
+    "build": "node optimize-images.mjs && node generate-seo.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}

@@ -36,6 +36,14 @@
  *  2. Cambia title, price, badge y las URLs de images
  *  3. Agrega specs con "Marca" si quieres que se agrupe por marca
  *  4. Listo: aparecera en la tarjeta flip de su categoria
+ *
+ * IMAGENES OPTIMIZADAS:
+ *  Las fotos se guardan en WebP dentro de "img/opt" (640px y 1280px).
+ *  Para agregar fotos nuevas:
+ *   1. Coloca las imagenes originales en "img/" o "img/products/"
+ *   2. Ejecuta: cd tools && npm install && npm run build
+ *   3. El script optimiza las fotos, actualiza las rutas de este
+ *      archivo y regenera el sitemap y los datos estructurados SEO.
  * ============================================================
  */
 
@@ -52,7 +60,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-12w-empotrable-cuadrada.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-12w-empotrable-cuadrada.webp"
         ],
         "specs": [
           {
@@ -75,7 +83,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-12w-empotrable-redonda.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-12w-empotrable-redonda.webp"
         ],
         "specs": [
           {
@@ -98,7 +106,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/12wc.png"
+          "./img/opt/12wc.webp"
         ],
         "specs": [
           {
@@ -122,7 +130,7 @@ const productFamilies = [
         "badge": "sale",
         "badgeText": "Oferta",
         "images": [
-          "./img/12wr.png"
+          "./img/opt/12wr.webp"
         ],
         "specs": [
           {
@@ -145,7 +153,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-15w-empotrable-cuadrada.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-15w-empotrable-cuadrada.webp"
         ],
         "specs": [
           {
@@ -168,7 +176,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-18w-empotrable-cuadrada.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-18w-empotrable-cuadrada.webp"
         ],
         "specs": [
           {
@@ -191,7 +199,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-18w-empotrable-redonda.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-18w-empotrable-redonda.webp"
         ],
         "specs": [
           {
@@ -214,7 +222,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/18wc.png"
+          "./img/opt/18wc.webp"
         ],
         "specs": [
           {
@@ -237,7 +245,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/18wr.png"
+          "./img/opt/18wr.webp"
         ],
         "specs": [
           {
@@ -260,7 +268,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-24w-empotrable-cuadrada.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-24w-empotrable-cuadrada.webp"
         ],
         "specs": [
           {
@@ -283,7 +291,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-24w-empotrable-redonda.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-24w-empotrable-redonda.webp"
         ],
         "specs": [
           {
@@ -307,7 +315,7 @@ const productFamilies = [
         "badge": "new",
         "badgeText": "Nuevo",
         "images": [
-          "./img/24wc.png"
+          "./img/opt/24wc.webp"
         ],
         "specs": [
           {
@@ -331,7 +339,7 @@ const productFamilies = [
         "badge": "hot",
         "badgeText": "Popular",
         "images": [
-          "./img/24wr.png"
+          "./img/opt/24wr.webp"
         ],
         "specs": [
           {
@@ -354,7 +362,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-3w-empotrable-cuadrada.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-3w-empotrable-cuadrada.webp"
         ],
         "specs": [
           {
@@ -377,7 +385,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-6w-empotrable-cuadrada.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-6w-empotrable-cuadrada.webp"
         ],
         "specs": [
           {
@@ -400,7 +408,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/aa-iluminacion-lampara-led-6w-empotrable-redonda.jpg"
+          "./img/opt/products/aa-iluminacion-lampara-led-6w-empotrable-redonda.webp"
         ],
         "specs": [
           {
@@ -432,9 +440,9 @@ const productFamilies = [
         "badge": "new",
         "badgeText": "Nuevo",
         "images": [
-          "https://images.unsplash.com/photo-1526721940322-10fb6e3ae94a?w=600&q=80",
-          "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=600&q=80",
-          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80"
+          "./img/opt/products/alumbrado-publico-1.webp",
+          "./img/opt/products/alumbrado-publico-2.webp",
+          "./img/opt/products/alumbrado-publico-3.webp"
         ],
         "specs": [
           {
@@ -465,7 +473,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-con-toma-acrilico-blanco.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-con-toma-acrilico-blanco.webp"
         ],
         "specs": [
           {
@@ -480,7 +488,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-doble-3-way-conmutable-blanco.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-doble-3-way-conmutable-blanco.webp"
         ],
         "specs": [
           {
@@ -495,7 +503,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-doble-con-toma-negro-modura.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-doble-con-toma-negro-modura.webp"
         ],
         "specs": [
           {
@@ -510,7 +518,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-doble-con-toma-plateado-modura.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-doble-con-toma-plateado-modura.webp"
         ],
         "specs": [
           {
@@ -525,7 +533,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-individual-3-way-acrilico-blanco.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-individual-3-way-acrilico-blanco.webp"
         ],
         "specs": [
           {
@@ -540,7 +548,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-individual-3-way-plateado-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-individual-3-way-plateado-troen.webp"
         ],
         "specs": [
           {
@@ -555,7 +563,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-individual-negro-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-individual-negro-troen.webp"
         ],
         "specs": [
           {
@@ -570,7 +578,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-individual-plateado-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-individual-plateado-troen.webp"
         ],
         "specs": [
           {
@@ -585,7 +593,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-triple-3-way-conmutable-blanco.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-triple-3-way-conmutable-blanco.webp"
         ],
         "specs": [
           {
@@ -600,7 +608,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-triple-3-way-negro-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-triple-3-way-negro-troen.webp"
         ],
         "specs": [
           {
@@ -615,7 +623,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-triple-3-way-plateado-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-triple-3-way-plateado-troen.webp"
         ],
         "specs": [
           {
@@ -630,7 +638,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-apagador-triple-acrilico-blanco.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-apagador-triple-acrilico-blanco.webp"
         ],
         "specs": [
           {
@@ -645,7 +653,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tapa-ciega-blanca-nordik-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tapa-ciega-blanca-nordik-troen.webp"
         ],
         "specs": [
           {
@@ -660,7 +668,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tapa-ciega-para-empotrar-acrilico-blanco.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tapa-ciega-para-empotrar-acrilico-blanco.webp"
         ],
         "specs": [
           {
@@ -675,7 +683,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tapa-ciega-para-empotrar-acrilico-negro.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tapa-ciega-para-empotrar-acrilico-negro.webp"
         ],
         "specs": [
           {
@@ -690,7 +698,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tapa-ciega-para-empotrar-plateado.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tapa-ciega-para-empotrar-plateado.webp"
         ],
         "specs": [
           {
@@ -705,7 +713,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-timbre-para-puertas-acrilico-blanco.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-timbre-para-puertas-acrilico-blanco.webp"
         ],
         "specs": [
           {
@@ -720,7 +728,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-timbre-para-puertas-blanco-nordik-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-timbre-para-puertas-blanco-nordik-troen.webp"
         ],
         "specs": [
           {
@@ -735,7 +743,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-timbre-para-puertas-plateado-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-timbre-para-puertas-plateado-troen.webp"
         ],
         "specs": [
           {
@@ -750,7 +758,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tomacorriente-doble-acrilico-blanco.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tomacorriente-doble-acrilico-blanco.webp"
         ],
         "specs": [
           {
@@ -765,7 +773,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tomacorriente-doble-blanco-con-tierra.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tomacorriente-doble-blanco-con-tierra.webp"
         ],
         "specs": [
           {
@@ -780,7 +788,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tomacorriente-doble-blanco-nordik-troen.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tomacorriente-doble-blanco-nordik-troen.webp"
         ],
         "specs": [
           {
@@ -796,7 +804,7 @@ const productFamilies = [
         "badge": "new",
         "badgeText": "Nuevo",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tomacorriente-doble-con-usb-y-tipo-c.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tomacorriente-doble-con-usb-y-tipo-c.webp"
         ],
         "specs": [
           {
@@ -811,7 +819,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/apagadores-y-tomacorrientes-tomacorriente-doble-negro-con-tierra.jpg"
+          "./img/opt/products/apagadores-y-tomacorrientes-tomacorriente-doble-negro-con-tierra.webp"
         ],
         "specs": [
           {
@@ -834,7 +842,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/8.jpg"
+          "./img/opt/8.webp"
         ],
         "specs": [
           {
@@ -857,7 +865,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/10.jpg"
+          "./img/opt/10.webp"
         ],
         "specs": [
           {
@@ -880,7 +888,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/12.jpg"
+          "./img/opt/12.webp"
         ],
         "specs": [
           {
@@ -903,7 +911,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/14.jpg"
+          "./img/opt/14.webp"
         ],
         "specs": [
           {
@@ -927,7 +935,7 @@ const productFamilies = [
         "badge": "hot",
         "badgeText": "Mas Vendido",
         "images": [
-          "./img/2.jpg"
+          "./img/opt/2.webp"
         ],
         "specs": [
           {
@@ -950,7 +958,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/4.jpg"
+          "./img/opt/4.webp"
         ],
         "specs": [
           {
@@ -973,7 +981,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/6.jpg"
+          "./img/opt/6.webp"
         ],
         "specs": [
           {
@@ -1004,7 +1012,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/cintas-led-y-accesorios-cinta-cob-blanca-12w-50m.jpg"
+          "./img/opt/products/cintas-led-y-accesorios-cinta-cob-blanca-12w-50m.webp"
         ],
         "specs": [
           {
@@ -1023,7 +1031,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/cintas-led-y-accesorios-cinta-cob-blanca-12w-x-metro.jpg"
+          "./img/opt/products/cintas-led-y-accesorios-cinta-cob-blanca-12w-x-metro.webp"
         ],
         "specs": [
           {
@@ -1042,7 +1050,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/cintas-led-y-accesorios-cinta-cob-calida-12w-50m.jpg"
+          "./img/opt/products/cintas-led-y-accesorios-cinta-cob-calida-12w-50m.webp"
         ],
         "specs": [
           {
@@ -1061,7 +1069,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/cintas-led-y-accesorios-cinta-cob-calida-12w-x-metro.jpg"
+          "./img/opt/products/cintas-led-y-accesorios-cinta-cob-calida-12w-x-metro.webp"
         ],
         "specs": [
           {
@@ -1080,7 +1088,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/cintas-led-y-accesorios-cinta-cob-directa-110v-blanca-50mts.jpg"
+          "./img/opt/products/cintas-led-y-accesorios-cinta-cob-directa-110v-blanca-50mts.webp"
         ],
         "specs": [
           {
@@ -1099,7 +1107,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/cintas-led-y-accesorios-cinta-cob-directa-110v-calida-50mts.jpg"
+          "./img/opt/products/cintas-led-y-accesorios-cinta-cob-directa-110v-calida-50mts.webp"
         ],
         "specs": [
           {
@@ -1118,7 +1126,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/cintas-led-y-accesorios-conector-180.jpg"
+          "./img/opt/products/cintas-led-y-accesorios-conector-180.webp"
         ],
         "specs": [
           {
@@ -1133,7 +1141,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/cintas-led-y-accesorios-conector-90.jpg"
+          "./img/opt/products/cintas-led-y-accesorios-conector-90.webp"
         ],
         "specs": [
           {
@@ -1156,7 +1164,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-breaker-thqc-1x20-amp-superficial.jpg"
+          "./img/opt/products/classic-lux-breaker-thqc-1x20-amp-superficial.webp"
         ],
         "specs": [
           {
@@ -1175,7 +1183,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-breaker-thqc-1x30-amp-empotrar.jpg"
+          "./img/opt/products/classic-lux-breaker-thqc-1x30-amp-empotrar.webp"
         ],
         "specs": [
           {
@@ -1194,7 +1202,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-breaker-thqc-1x30-amp-superficial.jpg"
+          "./img/opt/products/classic-lux-breaker-thqc-1x30-amp-superficial.webp"
         ],
         "specs": [
           {
@@ -1213,7 +1221,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-breaker-thqc-2x30-amp-empotrar.jpg"
+          "./img/opt/products/classic-lux-breaker-thqc-2x30-amp-empotrar.webp"
         ],
         "specs": [
           {
@@ -1232,7 +1240,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-breaker-thqc-2x30-amp-superficial.jpg"
+          "./img/opt/products/classic-lux-breaker-thqc-2x30-amp-superficial.webp"
         ],
         "specs": [
           {
@@ -1251,7 +1259,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-breaker-thqc-2x50-amp-superficial.jpg"
+          "./img/opt/products/classic-lux-breaker-thqc-2x50-amp-superficial.webp"
         ],
         "specs": [
           {
@@ -1270,7 +1278,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-breaker-thqc-2x60-amp-superficial.jpg"
+          "./img/opt/products/classic-lux-breaker-thqc-2x60-amp-superficial.webp"
         ],
         "specs": [
           {
@@ -1289,7 +1297,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-tablero-riel-plastico-2-circuitos.jpg"
+          "./img/opt/products/classic-lux-tablero-riel-plastico-2-circuitos.webp"
         ],
         "specs": [
           {
@@ -1308,7 +1316,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-tablero-riel-plastico-3-circuitos.jpg"
+          "./img/opt/products/classic-lux-tablero-riel-plastico-3-circuitos.webp"
         ],
         "specs": [
           {
@@ -1327,7 +1335,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/classic-lux-tapa-interperie-p-toma-doble-gris.jpg"
+          "./img/opt/products/classic-lux-tapa-interperie-p-toma-doble-gris.webp"
         ],
         "specs": [
           {
@@ -1354,7 +1362,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/dahua-utp-cat5e-indoor-100-cobre-305mts-dahua.jpg"
+          "./img/opt/products/dahua-utp-cat5e-indoor-100-cobre-305mts-dahua.webp"
         ],
         "specs": [
           {
@@ -1386,7 +1394,7 @@ const productFamilies = [
         "badge": "hot",
         "badgeText": "Mas Vendido",
         "images": [
-          "./img/products/ebeli-bombillo-led-12w-e27.jpg"
+          "./img/opt/products/ebeli-bombillo-led-12w-e27.webp"
         ],
         "specs": [
           {
@@ -1409,7 +1417,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-bombillo-led-15w-e27.jpg"
+          "./img/opt/products/ebeli-bombillo-led-15w-e27.webp"
         ],
         "specs": [
           {
@@ -1432,7 +1440,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-bombillo-tubular-10w-e27.jpg"
+          "./img/opt/products/ebeli-bombillo-tubular-10w-e27.webp"
         ],
         "specs": [
           {
@@ -1455,7 +1463,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-lampara-led-36w-borde-infinito-superficial.jpg"
+          "./img/opt/products/ebeli-lampara-led-36w-borde-infinito-superficial.webp"
         ],
         "specs": [
           {
@@ -1478,7 +1486,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-lampara-led-spot-5w-ojo-de-aguila.jpg"
+          "./img/opt/products/ebeli-lampara-led-spot-5w-ojo-de-aguila.webp"
         ],
         "specs": [
           {
@@ -1501,7 +1509,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-panel-led-120x60-96w.jpg"
+          "./img/opt/products/ebeli-panel-led-120x60-96w.webp"
         ],
         "specs": [
           {
@@ -1524,7 +1532,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-panel-led-60x60-60w.jpg"
+          "./img/opt/products/ebeli-panel-led-60x60-60w.webp"
         ],
         "specs": [
           {
@@ -1547,7 +1555,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-reflector-led-rgb-100w.jpg"
+          "./img/opt/products/ebeli-reflector-led-rgb-100w.webp"
         ],
         "specs": [
           {
@@ -1570,7 +1578,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-reflector-led-rgb-200w.jpg"
+          "./img/opt/products/ebeli-reflector-led-rgb-200w.webp"
         ],
         "specs": [
           {
@@ -1593,7 +1601,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-reflector-led-rgb-20w.jpg"
+          "./img/opt/products/ebeli-reflector-led-rgb-20w.webp"
         ],
         "specs": [
           {
@@ -1616,7 +1624,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/ebeli-reflector-led-rgb-50w.jpg"
+          "./img/opt/products/ebeli-reflector-led-rgb-50w.webp"
         ],
         "specs": [
           {
@@ -1639,7 +1647,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/r100w.jfif"
+          "./img/opt/r100w.webp"
         ],
         "specs": [
           {
@@ -1662,7 +1670,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/r200w.jfif"
+          "./img/opt/r200w.webp"
         ],
         "specs": [
           {
@@ -1686,7 +1694,7 @@ const productFamilies = [
         "badge": "hot",
         "badgeText": "Popular",
         "images": [
-          "./img/r300w.jfif"
+          "./img/opt/r300w.webp"
         ],
         "specs": [
           {
@@ -1710,7 +1718,7 @@ const productFamilies = [
         "badge": "sale",
         "badgeText": "Oferta",
         "images": [
-          "./img/r400w.jfif"
+          "./img/opt/r400w.webp"
         ],
         "specs": [
           {
@@ -1734,7 +1742,7 @@ const productFamilies = [
         "badge": "sale",
         "badgeText": "Oferta",
         "images": [
-          "./img/r50w.jpg"
+          "./img/opt/r50w.webp"
         ],
         "specs": [
           {
@@ -1765,7 +1773,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/exceline-fotocelda.jpg"
+          "./img/opt/products/exceline-fotocelda.webp"
         ],
         "specs": [
           {
@@ -1788,7 +1796,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/exceline-protector-de-nevera.jpg"
+          "./img/opt/products/exceline-protector-de-nevera.webp"
         ],
         "specs": [
           {
@@ -1811,7 +1819,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/exceline-protector-electronico-multiproposito.jpg"
+          "./img/opt/products/exceline-protector-electronico-multiproposito.webp"
         ],
         "specs": [
           {
@@ -1834,7 +1842,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/exceline-protector-p-equipos-electronicos.jpg"
+          "./img/opt/products/exceline-protector-p-equipos-electronicos.webp"
         ],
         "specs": [
           {
@@ -1857,7 +1865,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/exceline-protector-para-lavadora.jpg"
+          "./img/opt/products/exceline-protector-para-lavadora.webp"
         ],
         "specs": [
           {
@@ -1880,7 +1888,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/exceline-protector-para-microonda.jpg"
+          "./img/opt/products/exceline-protector-para-microonda.webp"
         ],
         "specs": [
           {
@@ -1903,7 +1911,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/exceline-protector-tv.jpg"
+          "./img/opt/products/exceline-protector-tv.webp"
         ],
         "specs": [
           {
@@ -1934,7 +1942,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-camara-bullet-hikvision.jpg"
+          "./img/opt/products/hikvision-camara-bullet-hikvision.webp"
         ],
         "specs": [
           {
@@ -1953,7 +1961,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-camara-domo-hikvision.jpg"
+          "./img/opt/products/hikvision-camara-domo-hikvision.webp"
         ],
         "specs": [
           {
@@ -1972,7 +1980,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-dvr-16-canales.jpg"
+          "./img/opt/products/hikvision-dvr-16-canales.webp"
         ],
         "specs": [
           {
@@ -1991,7 +1999,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-dvr-4-canales.jpg"
+          "./img/opt/products/hikvision-dvr-4-canales.webp"
         ],
         "specs": [
           {
@@ -2010,7 +2018,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-dvr-8-canales.jpg"
+          "./img/opt/products/hikvision-dvr-8-canales.webp"
         ],
         "specs": [
           {
@@ -2029,7 +2037,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-utp-cat5e-indoor-100-cobre-305mts-hikvision.jpg"
+          "./img/opt/products/hikvision-utp-cat5e-indoor-100-cobre-305mts-hikvision.webp"
         ],
         "specs": [
           {
@@ -2052,7 +2060,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-utp-cat5e-outdoor-100-cobre-305mts.jpg"
+          "./img/opt/products/hikvision-utp-cat5e-outdoor-100-cobre-305mts.webp"
         ],
         "specs": [
           {
@@ -2075,7 +2083,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-utp-cat6-indoor-100-cobre-305mts.jpg"
+          "./img/opt/products/hikvision-utp-cat6-indoor-100-cobre-305mts.webp"
         ],
         "specs": [
           {
@@ -2098,7 +2106,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hikvision-utp-cat6-outdoor-100-cobre-305mts.jpg"
+          "./img/opt/products/hikvision-utp-cat6-outdoor-100-cobre-305mts.webp"
         ],
         "specs": [
           {
@@ -2129,7 +2137,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hilook-camara-bullet-hilook-thc-b120-p.jpg"
+          "./img/opt/products/hilook-camara-bullet-hilook-thc-b120-p.webp"
         ],
         "specs": [
           {
@@ -2148,7 +2156,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/hilook-camara-domo-hilook-thc-t120-p.jpg"
+          "./img/opt/products/hilook-camara-domo-hilook-thc-t120-p.webp"
         ],
         "specs": [
           {
@@ -2176,7 +2184,7 @@ const productFamilies = [
         "badge": "hot",
         "badgeText": "Popular",
         "images": [
-          "./img/products/imou-camara-imou-ranger-2-3mp-ipc-k2en-3h3w.jpg"
+          "./img/opt/products/imou-camara-imou-ranger-2-3mp-ipc-k2en-3h3w.webp"
         ],
         "specs": [
           {
@@ -2195,7 +2203,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/imou-camara-imou-ranger-2-5mp-ipc-k2en-5h3w.jpg"
+          "./img/opt/products/imou-camara-imou-ranger-2-5mp-ipc-k2en-5h3w.webp"
         ],
         "specs": [
           {
@@ -2215,7 +2223,7 @@ const productFamilies = [
         "badge": "new",
         "badgeText": "Nuevo",
         "images": [
-          "./img/products/imou-camara-imou-versa-1080p-full-color-ipc-c22fn-0.jpg"
+          "./img/opt/products/imou-camara-imou-versa-1080p-full-color-ipc-c22fn-0.webp"
         ],
         "specs": [
           {
@@ -2242,7 +2250,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/inova-buld-led-e27-industrial-100w.jpg"
+          "./img/opt/products/inova-buld-led-e27-industrial-100w.webp"
         ],
         "specs": [
           {
@@ -2265,7 +2273,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/inova-buld-recargable-30w.jpg"
+          "./img/opt/products/inova-buld-recargable-30w.webp"
         ],
         "specs": [
           {
@@ -2288,7 +2296,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/inova-lampara-led-hermetica-80w-120cm.jpg"
+          "./img/opt/products/inova-lampara-led-hermetica-80w-120cm.webp"
         ],
         "specs": [
           {
@@ -2319,7 +2327,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/logan-ups-logan-1000va-4-tomas.jpg"
+          "./img/opt/products/logan-ups-logan-1000va-4-tomas.webp"
         ],
         "specs": [
           {
@@ -2342,7 +2350,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/logan-ups-logan-750va-4-tomas.jpg"
+          "./img/opt/products/logan-ups-logan-750va-4-tomas.webp"
         ],
         "specs": [
           {
@@ -2373,7 +2381,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/lucerna-bombillo-gu10-8w-3000k.jpg"
+          "./img/opt/products/lucerna-bombillo-gu10-8w-3000k.webp"
         ],
         "specs": [
           {
@@ -2396,7 +2404,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/lucerna-reflector-led-rgb-30w.jpg"
+          "./img/opt/products/lucerna-reflector-led-rgb-30w.webp"
         ],
         "specs": [
           {
@@ -2427,7 +2435,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-barra-roscada-3-8-2mts.jpg"
+          "./img/opt/products/metalnet-barra-roscada-3-8-2mts.webp"
         ],
         "specs": [
           {
@@ -2446,7 +2454,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-pared-10-15cm.jpg"
+          "./img/opt/products/metalnet-base-de-pared-10-15cm.webp"
         ],
         "specs": [
           {
@@ -2465,7 +2473,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-pared-20cm.jpg"
+          "./img/opt/products/metalnet-base-de-pared-20cm.webp"
         ],
         "specs": [
           {
@@ -2484,7 +2492,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-pared-30cm.jpg"
+          "./img/opt/products/metalnet-base-de-pared-30cm.webp"
         ],
         "specs": [
           {
@@ -2503,7 +2511,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-pared-40cm.jpg"
+          "./img/opt/products/metalnet-base-de-pared-40cm.webp"
         ],
         "specs": [
           {
@@ -2522,7 +2530,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-techo-10cm.jpg"
+          "./img/opt/products/metalnet-base-de-techo-10cm.webp"
         ],
         "specs": [
           {
@@ -2541,7 +2549,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-techo-15cm.jpg"
+          "./img/opt/products/metalnet-base-de-techo-15cm.webp"
         ],
         "specs": [
           {
@@ -2560,7 +2568,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-techo-20cm.jpg"
+          "./img/opt/products/metalnet-base-de-techo-20cm.webp"
         ],
         "specs": [
           {
@@ -2579,7 +2587,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-techo-30cm.jpg"
+          "./img/opt/products/metalnet-base-de-techo-30cm.webp"
         ],
         "specs": [
           {
@@ -2598,7 +2606,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-base-de-techo-40cm.jpg"
+          "./img/opt/products/metalnet-base-de-techo-40cm.webp"
         ],
         "specs": [
           {
@@ -2617,7 +2625,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-escalerilla-10cm.jpg"
+          "./img/opt/products/metalnet-escalerilla-10cm.webp"
         ],
         "specs": [
           {
@@ -2636,7 +2644,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-escalerilla-15cm.jpg"
+          "./img/opt/products/metalnet-escalerilla-15cm.webp"
         ],
         "specs": [
           {
@@ -2655,7 +2663,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-escalerilla-20cm.jpg"
+          "./img/opt/products/metalnet-escalerilla-20cm.webp"
         ],
         "specs": [
           {
@@ -2674,7 +2682,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-escalerilla-30cm.jpg"
+          "./img/opt/products/metalnet-escalerilla-30cm.webp"
         ],
         "specs": [
           {
@@ -2693,7 +2701,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-escalerilla-40cm.jpg"
+          "./img/opt/products/metalnet-escalerilla-40cm.webp"
         ],
         "specs": [
           {
@@ -2712,7 +2720,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-kit-de-empalme-union.jpg"
+          "./img/opt/products/metalnet-kit-de-empalme-union.webp"
         ],
         "specs": [
           {
@@ -2731,7 +2739,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-kit-de-empalme-union-2.jpg"
+          "./img/opt/products/metalnet-kit-de-empalme-union-2.webp"
         ],
         "specs": [
           {
@@ -2750,7 +2758,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/products/metalnet-kit-tuerca-hexagonal-arandela-plana-3-8.jpg"
+          "./img/opt/products/metalnet-kit-tuerca-hexagonal-arandela-plana-3-8.webp"
         ],
         "specs": [
           {
@@ -2777,7 +2785,7 @@ const productFamilies = [
         "oldPrice": "$3,200",
         "badge": "",
         "images": [
-          "./img/danger.jfif"
+          "./img/opt/danger.webp"
         ],
         "specs": [
           {
@@ -2800,7 +2808,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/mushu.jfif"
+          "./img/opt/mushu.webp"
         ],
         "specs": [
           {
@@ -2823,7 +2831,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/nyx.jfif"
+          "./img/opt/nyx.webp"
         ],
         "specs": [
           {
@@ -2847,7 +2855,7 @@ const productFamilies = [
         "badge": "hot",
         "badgeText": "Mas Vendido",
         "images": [
-          "./img/sniper.jfif"
+          "./img/opt/sniper.webp"
         ],
         "specs": [
           {
@@ -2870,7 +2878,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/spartan.jfif"
+          "./img/opt/spartan.webp"
         ],
         "specs": [
           {
@@ -2893,7 +2901,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/zu.jfif"
+          "./img/opt/zu.webp"
         ],
         "specs": [
           {
@@ -2925,7 +2933,7 @@ const productFamilies = [
         "badge": "hot",
         "badgeText": "Mas Vendido",
         "images": [
-          "./img/products/u-products-protector-8-tomas-1200w.jpg"
+          "./img/opt/products/u-products-protector-8-tomas-1200w.webp"
         ],
         "specs": [
           {

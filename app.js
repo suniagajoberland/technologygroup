@@ -316,6 +316,10 @@ function createProductCard(product, family, slug) {
                 ? `<span class="card-image-count"><i class="fas fa-images" aria-hidden="true"></i> ${product.images.length} fotos</span>`
                 : '';
 
+        const codeMarkup = product.code
+            ? `<div class="spec-item"><span class="spec-label">Código:</span> <span class="spec-value">${escapeHtml(product.code)}</span></div>`
+            : '';
+
         const specs = (product.specs || [])
             .slice(0, 3)
             .map(
@@ -323,6 +327,8 @@ function createProductCard(product, family, slug) {
                     `<div class="spec-item"><span class="spec-label">${escapeHtml(spec.label)}:</span> <span class="spec-value">${escapeHtml(spec.value)}</span></div>`
             )
             .join('');
+
+        const allSpecs = codeMarkup + specs;
 
         flipInner.innerHTML = `
             <div class="card-image-container">
@@ -343,10 +349,10 @@ function createProductCard(product, family, slug) {
                 </button>
             </div>
             <div class="card-body">
-                <div class="card-category">${safeFamily}</div>
-                <h3 class="card-title">${safeTitle}</h3>
-                <div class="product-specs">${specs}</div>
-                <div class="card-price">
+            <div class="card-category">${safeFamily}</div>
+            <h3 class="card-title">${safeTitle}</h3>
+            <div class="product-specs">${allSpecs}</div>
+            <div class="card-price">
                     <span class="price-current">${safePrice}</span>
                     ${product.oldPrice ? `<span class="price-old">${escapeHtml(product.oldPrice)}</span>` : ''}
                 </div>

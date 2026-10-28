@@ -1772,6 +1772,7 @@ const productFamilies = [
         "price": "17.30$",
         "oldPrice": "",
         "badge": "",
+        "code": "GSM-FC",
         "images": [
           "./img/opt/products/exceline-fotocelda.webp"
         ],
@@ -1795,8 +1796,9 @@ const productFamilies = [
         "price": "$13.92",
         "oldPrice": "",
         "badge": "",
+        "code": "GSM-N120",
         "images": [
-          "./img/opt/products/exceline-protector-de-nevera.webp"
+          "img/opt/exceline-gsm-n120.png"
         ],
         "specs": [
           {
@@ -1818,8 +1820,9 @@ const productFamilies = [
         "price": "$16.07",
         "oldPrice": "",
         "badge": "",
+        "code": "GSM-MP",
         "images": [
-          "./img/opt/products/exceline-protector-electronico-multiproposito.webp"
+          "img/opt/GSM-MP.png"
         ],
         "specs": [
           {
@@ -1841,8 +1844,9 @@ const productFamilies = [
         "price": "$24.94",
         "oldPrice": "",
         "badge": "",
+        "code": "GSM-E",
         "images": [
-          "./img/opt/products/exceline-protector-p-equipos-electronicos.webp"
+          "img/opt/GSM-E.jpg"
         ],
         "specs": [
           {
@@ -1864,8 +1868,9 @@ const productFamilies = [
         "price": "$16.07",
         "oldPrice": "",
         "badge": "",
+        "code": "GSM-LV",
         "images": [
-          "./img/opt/products/exceline-protector-para-lavadora.webp"
+          "img/opt/GSM-LV.png"
         ],
         "specs": [
           {
@@ -1887,8 +1892,9 @@ const productFamilies = [
         "price": "$16.07",
         "oldPrice": "",
         "badge": "",
+        "code": "GSM-MW",
         "images": [
-          "./img/opt/products/exceline-protector-para-microonda.webp"
+          "img/opt/GSM-MV.png"
         ],
         "specs": [
           {
@@ -1910,8 +1916,9 @@ const productFamilies = [
         "price": "$25.64",
         "oldPrice": "",
         "badge": "",
+        "code": "GSM-TV120",
         "images": [
-          "./img/opt/products/exceline-protector-tv.webp"
+          "img/opt/GSM-TV120.png"
         ],
         "specs": [
           {
@@ -2933,7 +2940,7 @@ const productFamilies = [
         "badge": "hot",
         "badgeText": "Mas Vendido",
         "images": [
-          "./img/opt/products/u-products-protector-8-tomas-1200w.webp"
+          "img/opt/protector-u.jpg"
         ],
         "specs": [
           {

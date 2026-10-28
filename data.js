@@ -518,7 +518,7 @@ const productFamilies = [
         "oldPrice": "",
         "badge": "",
         "images": [
-          "./img/opt/products/apagadores-y-tomacorrientes-apagador-doble-con-toma-plateado-modura.webp"
+          "img/products/A136-ETB.jpeg"
         ],
         "specs": [
           {

@@ -553,7 +553,7 @@ const productFamilies = [
         "specs": [
           {
             "label": "Codigo",
-            "value": "A136-ETP-1K-3W"
+            "value": "A1362K-3c"
           }
         ]
       },

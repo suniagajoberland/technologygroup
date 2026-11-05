@@ -1643,7 +1643,7 @@ const productFamilies = [
       },
       {
         "title": "Reflector LED Slim 100W",
-        "price": "18.02$",
+        "price": "27.61$",
         "oldPrice": "",
         "badge": "",
         "images": [
@@ -1666,7 +1666,7 @@ const productFamilies = [
       },
       {
         "title": "Reflector LED Slim 200W",
-        "price": "36.54$",
+        "price": "64.96$",
         "oldPrice": "",
         "badge": "",
         "images": [
@@ -1689,7 +1689,7 @@ const productFamilies = [
       },
       {
         "title": "Reflector LED Slim 300W",
-        "price": "58.00$",
+        "price": "82.94$",
         "oldPrice": "",
         "badge": "hot",
         "badgeText": "Popular",
@@ -1713,7 +1713,7 @@ const productFamilies = [
       },
       {
         "title": "Reflector LED Slim 400W",
-        "price": "68.44$",
+        "price": "110.78$",
         "oldPrice": "",
         "badge": "sale",
         "badgeText": "Oferta",
@@ -1737,7 +1737,7 @@ const productFamilies = [
       },
       {
         "title": "Reflector LED Slim 50W",
-        "price": "12.76$",
+        "price": "18.56$",
         "oldPrice": "",
         "badge": "sale",
         "badgeText": "Oferta",

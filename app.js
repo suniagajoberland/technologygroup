@@ -10,19 +10,26 @@ const searchResultsText = document.getElementById('searchResultsText');
 const noResults = document.getElementById('noResults');
 const brandFilter = document.getElementById('brandFilter');
 const PRODUCTS_GRID = document.getElementById('productsGrid');
+const pagination = document.getElementById('pagination');
 const modal = document.getElementById('imageModal');
 const modalImage = document.getElementById('modalImage');
 const modalDots = document.getElementById('modalDots');
 const modalClose = document.getElementById('modalClose');
 const modalPrev = document.getElementById('modalPrev');
 const modalNext = document.getElementById('modalNext');
-const CARD_SIZES = '(max-width: 480px) 92vw, (max-width: 768px) 45vw, (max-width: 1200px) 30vw, 320px';
+const CARD_SIZES = '(max-width: 768px) 46vw, (max-width: 1024px) 30vw, (max-width: 1199px) 23vw, 18vw';
 const PLACEHOLDER_IMAGE = 'img/opt/og-image.jpg';
 
 let currentSearchTerm = '';
 let currentSearchRaw = '';
 let currentBrandFilter = 'all';
 let brands = [];
+let currentPage = 1;
+const MOBILE_QUERY = window.matchMedia('(max-width: 768px)');
+
+function getPerPage() {
+    return MOBILE_QUERY.matches ? 10 : 15;
+}
 
 /* ============================================================
    UTILIDADES
@@ -159,6 +166,7 @@ function initBrandFilter() {
         });
 
         currentBrandFilter = button.dataset.brand || 'all';
+        currentPage = 1;
         renderProducts();
     });
 }
@@ -167,6 +175,7 @@ if (productSearch) {
     const runSearch = debounce(() => {
         currentSearchRaw = productSearch.value;
         currentSearchTerm = normalizeText(currentSearchRaw);
+        currentPage = 1;
         renderProducts();
     });
 
@@ -187,6 +196,7 @@ if (searchClear) {
         currentSearchRaw = '';
         currentSearchTerm = '';
         searchClear.style.display = 'none';
+        currentPage = 1;
         renderProducts();
     });
     searchClear.style.display = 'none';
@@ -433,6 +443,91 @@ function createProductCard(product, family, slug) {
     return card;
 }
 
+function renderPagination(totalPages) {
+    if (!pagination) return;
+
+    if (totalPages <= 1) {
+        pagination.hidden = true;
+        pagination.replaceChildren();
+        return;
+    }
+
+    pagination.hidden = false;
+    const fragment = document.createDocumentFragment();
+
+    const makeButton = (label, page, { disabled = false, active = false, ariaLabel = '' } = {}) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'page-btn' + (active ? ' active' : '');
+        button.textContent = label;
+        button.disabled = disabled;
+        if (active) button.setAttribute('aria-current', 'page');
+        if (ariaLabel) button.setAttribute('aria-label', ariaLabel);
+        if (!disabled && !active) {
+            button.addEventListener('click', () => {
+                currentPage = page;
+                renderProducts();
+                scrollToProducts();
+            });
+        }
+        return button;
+    };
+
+    fragment.appendChild(
+        makeButton('‹', currentPage - 1, {
+            disabled: currentPage === 1,
+            ariaLabel: 'Página anterior',
+        })
+    );
+
+    getPageNumbers(currentPage, totalPages).forEach((page) => {
+        if (page === '...') {
+            const span = document.createElement('span');
+            span.className = 'page-ellipsis';
+            span.textContent = '…';
+            fragment.appendChild(span);
+        } else {
+            fragment.appendChild(
+                makeButton(String(page), page, {
+                    active: page === currentPage,
+                    ariaLabel: `Página ${page}`,
+                })
+            );
+        }
+    });
+
+    fragment.appendChild(
+        makeButton('›', currentPage + 1, {
+            disabled: currentPage === totalPages,
+            ariaLabel: 'Página siguiente',
+        })
+    );
+
+    pagination.replaceChildren(fragment);
+}
+
+function getPageNumbers(current, total) {
+    if (total <= 7) {
+        return Array.from({ length: total }, (_, i) => i + 1);
+    }
+
+    const pages = [1];
+    const start = Math.max(2, current - 1);
+    const end = Math.min(total - 1, current + 1);
+
+    if (start > 2) pages.push('...');
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (end < total - 1) pages.push('...');
+    pages.push(total);
+    return pages;
+}
+
+function scrollToProducts() {
+    if (!PRODUCTS_GRID) return;
+    const top = PRODUCTS_GRID.getBoundingClientRect().top + window.scrollY - 140;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+}
+
 function renderProducts() {
     if (!PRODUCTS_GRID) return;
 
@@ -465,17 +560,35 @@ function renderProducts() {
                 : 'none';
     }
 
+    const perPage = getPerPage();
+    const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+    currentPage = Math.min(Math.max(1, currentPage), totalPages);
+
+    const start = (currentPage - 1) * perPage;
+    const pageItems = filtered.slice(start, start + perPage);
+
     const fragment = document.createDocumentFragment();
-    filtered.forEach((item) => {
+    pageItems.forEach((item) => {
         fragment.appendChild(createProductCard(item.product, item.family, item.slug));
     });
     PRODUCTS_GRID.replaceChildren(fragment);
+    renderPagination(totalPages);
 }
 
 function focusLinkedProduct() {
     if (!location.hash.startsWith('#producto-')) return;
 
-    const card = document.getElementById(location.hash.slice(1));
+    const id = location.hash.slice(1);
+    const index = ALL_PRODUCTS.findIndex((item) => `producto-${item.slug}` === id);
+    if (index !== -1) {
+        const targetPage = Math.floor(index / getPerPage()) + 1;
+        if (targetPage !== currentPage) {
+            currentPage = targetPage;
+            renderProducts();
+        }
+    }
+
+    const card = document.getElementById(id);
     if (!card) return;
 
     setTimeout(() => {
@@ -605,6 +718,17 @@ window.addEventListener('hashchange', focusLinkedProduct);
 /* ============================================================
    6. INICIO DE LA PAGINA
    ============================================================ */
+const onPerPageChange = () => {
+    currentPage = 1;
+    renderProducts();
+};
+
+if (typeof MOBILE_QUERY.addEventListener === 'function') {
+    MOBILE_QUERY.addEventListener('change', onPerPageChange);
+} else if (typeof MOBILE_QUERY.addListener === 'function') {
+    MOBILE_QUERY.addListener(onPerPageChange);
+}
+
 initBrandFilter();
 renderProducts();
 focusLinkedProduct();
